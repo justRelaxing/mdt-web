@@ -1,0 +1,81 @@
+body {
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+ul, .movie {
+    width: 1440px;
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+    padding: 20px 0;
+}
+
+ul li a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+
+.movie {
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+h2 {
+    text-align: center;
+    font-size: 28px;
+}
+
+.description-frieren {
+    text-align: justify;
+    font-family: 'FrierenFont';
+}
+
+.description-castle {
+    text-align: justify;
+    font-family: 'CastleFont';
+}
+
+.description-witch {
+    text-align: justify;
+    font-family: 'WitchFont';
+}
+
+.images img {
+    width: 30%;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+table {
+    margin-top: 10px;
+    width: 100%;
+}
+
+table td {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+@font-face {
+    font-family: 'FrierenFont';
+    src: url('assets/fonts/FrierenFont.ttf');
+}
+
+@font-face {
+    font-family: 'CastleFont';
+    src: url('assets/fonts/CastleFont.ttf');
+}
+
+@font-face {
+    font-family: 'WitchFont';
+    src: url('assets/fonts/WitchFont.ttf');
+}
