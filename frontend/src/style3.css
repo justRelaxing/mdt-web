@@ -1,0 +1,120 @@
+body {
+    background-color: #f0f0f0;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+ul, .movie {
+    width: 1440px;
+    margin: 0 auto;
+}
+
+ul {
+    list-style: none;
+    padding: 20px 0;
+}
+
+ul li a {
+    color: black;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+ul li a:hover {
+    text-decoration: underline;
+}
+
+.movie {
+    padding: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+h2 {
+    text-align: center;
+    font-size: 28px;
+}
+
+.description-frieren {
+    text-align: justify;
+    font-family: 'FrierenFont';
+}
+
+.images img {
+    width: 30%;
+    border-radius: 15px;
+    margin: 10px;
+}
+
+table {
+    margin-top: 10px;
+    width: 100%;
+}
+
+table td {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
+.movie-form {
+    width: 600px;
+    margin: 20px auto;
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+
+fieldset {
+    border: 1px solid #ccc;
+    padding: 20px;
+}
+
+legend {
+    font-weight: bold;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+label.genre-label, input[type="checkbox"] {
+    display: inline-block;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="password"],
+input[type="file"] {
+    width: calc(100% - 20px);
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"],
+input[type="reset"] {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+input[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+}
+
+input[type="reset"] {
+    background-color: #f44336;
+    color: white;
+}
+
+input[type="submit"]:hover,
+input[type="reset"]:hover {
+    opacity: 0.8;
+}

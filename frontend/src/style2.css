@@ -40,12 +40,12 @@ h2 {
 }
 
 .description-castle {
-    text-align: justify;
+    text-align: center;
     font-family: 'CastleFont';
 }
 
 .description-witch {
-    text-align: justify;
+    text-align: left;
     font-family: 'WitchFont';
 }
 

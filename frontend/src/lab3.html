@@ -2,10 +2,54 @@
 <html lang="ru">
     <head>
         <meta charset="UTF-8">
-        <title>Лабораторная2</title>
-        <link rel="stylesheet" href="style2.css">
+        <title>Лабораторная3</title>
+        <link rel="stylesheet" href="style3.css">
     </head>
     <body>
+        <div class="movie-form">
+            <h2>Добавить фильм</h2>
+            <form action="/submit_movie" method="post" enctype="multipart/form-data">
+                <fieldset>
+                    <legend>Информация о фильме</legend>
+
+                    <label for="movie_title">Название фильма:</label>
+                    <input type="text" id="movie_title" name="movie_title" required><br>
+
+                    <label>Жанры:</label>
+                    <input type="checkbox" id="genre_action" name="genre" value="action">
+                    <label for="genre_action" class="genre-label">Боевик</label>
+                    <input type="checkbox" id="genre_drama" name="genre" value="drama">
+                    <label for="genre_drama" class="genre-label">Драма</label>
+                    <input type="checkbox" id="genre_fantasy" name="genre" value="fantasy">
+                    <label for="genre_fantasy" class="genre-label">Фэнтези</label><br>
+
+                    <label for="release_year">Год выпуска:</label>
+                    <input type="text" id="release_year" name="release_year" required><br>
+
+                    <label for="country">Страна:</label>
+                    <input type="text" id="country" name="country" required><br>
+
+                    <label for="author">Автор:</label>
+                    <input type="text" id="author" name="author" required><br>
+
+                    <label for="email">Контактный Email:</label>
+                    <input type="email" id="email" name="email" required><br>
+
+                    <label for="phone">Контактный телефон:</label>
+                    <input type="tel" id="phone" name="phone" required><br>
+
+                    <label for="password">Пароль для подтверждения:</label>
+                    <input type="password" id="password" name="password" required><br>
+
+                    <label for="poster">Загрузите постер фильма:</label>
+                    <input type="file" id="poster" name="poster" accept="image/*"><br>
+
+                    <input type="submit" value="Добавить фильм">
+
+                    <input type="reset" value="Очистить">
+                </fieldset>
+            </form>
+        </div>
         <ul>
             <li><a href="#frieren_journey">Провожающая в последний путь Фрирен</a></li>
             <li><a href="#moving_castle">Ходячий замок</a></li>
