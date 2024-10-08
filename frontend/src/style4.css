@@ -1,0 +1,106 @@
+html {
+    font-family: sans-serif;
+}
+
+body {
+    margin: 0;
+    background-color: #f0f4f8;
+}
+
+header {
+    background: #4caf50;
+    height: 100px;
+}
+
+h1 {
+    text-align: center;
+    color: white;
+    line-height: 100px;
+    margin: 0;
+}
+
+button {
+    margin: 50px;
+    font-size: 20px;
+    background-color: #ff7043;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    animation: vibrate 0.1s infinite linear;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+@keyframes vibrate {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    50% { transform: translateX(3px); }
+    75% { transform: translateX(-3px); }
+    100% { transform: translateX(0); }
+}
+
+button:hover {
+    animation: none;
+    background-color: #66bb6a;
+    transform: scale(1.05);
+}
+
+a {
+    font-size: 20px;
+    color: #37474f;
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #66bb6a;
+}
+
+a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -2px;
+    width: 0;
+    height: 2px;
+    background-color: #66bb6a;
+    transition: width 0.3s ease, left 0.3s ease;
+}
+
+a:hover::after {
+    width: 100%;
+    left: 0;
+}
+
+.ball {
+    width: 50px;
+    height: 50px;
+    background-color: #29b6f6;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: fall 3s cubic-bezier(0.5, 1.5, 0.5, 1) infinite;
+}
+
+@keyframes fall {
+    0% {
+        top: 30%;
+        transform: translateX(-50%) scaleX(1) scaleY(1);
+    }
+    40% {
+        top: 70%;
+        transform: translateX(-50%) scaleX(1.2) scaleY(0.8);
+    }
+    60% {
+        top: 70%;
+        transform: translateX(-50%) scaleX(0.8) scaleY(1.1);
+    }
+    100% {
+        top: 30%;
+        transform: translateX(-50%) scaleX(1) scaleY(1);
+    }
+}
