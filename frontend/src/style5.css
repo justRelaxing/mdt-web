@@ -28,17 +28,13 @@ article {
   display: flex;
 }
 
-.flex-group-1 article:last-child {
-  order: -1;
-}
-
 .flex-group-2 {
   display: flex;
   flex-direction: column-reverse;
   order: 2;
 }
 
-.flex-group-2-3-4-5 {
+.flex-group-2345 {
   display: flex;
 }
 
