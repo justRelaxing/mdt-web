@@ -35,7 +35,7 @@ article {
     "item8 item9 item9 item10";
 }
 
-article:first-child{
+article:nth-child(1){
     grid-area: item1;
 }
 
