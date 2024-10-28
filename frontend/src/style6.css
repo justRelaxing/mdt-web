@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background: rgb(48, 150, 130);
+    background: rgb(52, 206, 142);
     height: 100px;
 }
 
@@ -18,68 +18,62 @@ h1 {
     margin: 0;
 }
 
+article {
+    padding: 10px;
+    margin: 10px;
+    background: rgba(16, 233, 215, 0.178);
+}
+
+
+
 .grid {
     display: grid;
     grid-template-areas:
-        "a a b b c c"
-        "d d e e f f"
-        "g g h h i i"
-        "j j j j j j";
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(4, auto);
-    gap: 10px;
-    padding: 20px;
-    background-color: #f5f5f5;
+    "item1 item2 item3 item3"
+    "item1 item4 item3 item3"
+    "item1 item5 item6 item7"
+    "item8 item9 item9 item10";
+
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
 }
 
-article:nth-child(1) {
-    grid-area: a;
+article:first-child{
+    grid-area: item1;
 }
 
-article:nth-child(2) {
-    grid-area: b;
+article:nth-child(2){
+    grid-area: item2;
 }
 
-article:nth-child(3) {
-    grid-area: c;
+article:nth-child(3){
+    grid-area: item3;
 }
 
-article:nth-child(4) {
-    grid-area: d;
+article:nth-child(4){
+    grid-area: item4;
 }
 
-article:nth-child(5) {
-    grid-area: e;
+article:nth-child(5){
+    grid-area: item5;
 }
 
-article:nth-child(6) {
-    grid-area: f;
+article:nth-child(6){
+    grid-area: item6;
 }
 
-article:nth-child(7) {
-    grid-area: g;
+article:nth-child(7){
+    grid-area: item7;
 }
 
-article:nth-child(8) {
-    grid-area: h;
+article:nth-child(8){
+    grid-area: item8;
 }
 
-article:nth-child(9) {
-    grid-area: i;
+article:nth-last-child(2){
+    grid-area: item9;
 }
 
-article:nth-child(10) {
-    grid-area: j;
-}
-
-article {
-    padding: 15px;
-    background: rgba(100, 200, 180, 0.3);
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    transition: background 0.3s ease;
-}
-
-article:hover {
-    background: rgba(100, 200, 180, 0.5);
+article:last-child{
+    grid-area: item10;
 }
