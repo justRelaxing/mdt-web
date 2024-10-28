@@ -67,10 +67,10 @@ article:nth-child(8){
     grid-area: item8;
 }
 
-article:nth-last-child(2){
+article:nth-child(9){
     grid-area: item9;
 }
 
-article:last-child{
+article:nth-child(10){
     grid-area: item10;
 }
