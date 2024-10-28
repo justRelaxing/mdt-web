@@ -33,9 +33,6 @@ article {
     "item1 item4 item3 item3"
     "item1 item5 item6 item7"
     "item8 item9 item9 item10";
-
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(4, 1fr);
 }
 
 article:first-child{
