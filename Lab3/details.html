@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -69,66 +70,126 @@
         .color-btn.active {
             border: 2px solid #2196F3;
         }
+
+        .view-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .view-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            background: #fff;
+            transition: transform 0.2s;
+        }
+
+        .view-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .view-btn.active {
+            border: 2px solid #2196F3;
+        }
     </style>
 </head>
+
 <body>
-<div class="container">
-    <h1>Детали футболки</h1>
-    <div id="shirt-details" class="shirt-details">
-        <img id="shirt-image" class="shirt-image" src="" alt="">
-        <div class="shirt-info">
-            <h2 id="shirt-name"></h2>
-            <p id="shirt-description"></p>
-            <p id="shirt-price"></p>
-            <div id="color-buttons" class="color-buttons"></div>
+    <div class="container">
+        <h1>Детали футболки</h1>
+        <div id="shirt-details" class="shirt-details">
+            <img id="shirt-image" class="shirt-image" src="" alt="">
+            <div class="shirt-info">
+                <h2 id="shirt-name"></h2>
+                <p id="shirt-description"></p>
+                <p id="shirt-price"></p>
+                <div id="color-buttons" class="color-buttons"></div>
+            </div>
         </div>
     </div>
-</div>
 
-<script type="module">
-    import { shirts } from './shirts.js';
+    <script type="module">
+        import { shirts } from './shirts.js';
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const shirtId = parseInt(urlParams.get('id'));
+        const urlParams = new URLSearchParams(window.location.search);
+        const shirtId = parseInt(urlParams.get('id'));
 
-    const currentShirt = shirts[shirtId];
+        const currentShirt = shirts[shirtId];
 
-    function createColorButton(colorName, isActive = false) {
-        const btn = document.createElement('button');
-        btn.className = `color-btn ${isActive ? 'active' : ''}`;
-        btn.textContent = colorName;
-        btn.onclick = () => {
-            document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        let currentColor = Object.keys(currentShirt.colors)[0] || 'white';
 
-            const image = document.getElementById('shirt-image');
-            image.src = currentShirt.colors[colorName]?.front || currentShirt.default?.front;
-        };
-        return btn;
-    }
-
-    function populateDetails() {
-        const nameElement = document.getElementById('shirt-name');
-        const descriptionElement = document.getElementById('shirt-description');
-        const priceElement = document.getElementById('shirt-price');
-        const colorButtonsContainer = document.getElementById('color-buttons');
         const imageElement = document.getElementById('shirt-image');
 
-        nameElement.textContent = currentShirt.name;
-        descriptionElement.textContent = currentShirt.description || 'Описание отсутствует';
-        priceElement.textContent = currentShirt.price;
-        imageElement.src = currentShirt.colors.white?.front || currentShirt.default?.front;
+        function updateImage() {
+            if (currentShirt.colors[currentColor] && currentShirt.colors[currentColor][currentView]) {
+                imageElement.src = currentShirt.colors[currentColor][currentView];
+            } else if (currentShirt.default && currentShirt.default[currentView]) {
+                imageElement.src = currentShirt.default[currentView];
+            }
+        }
 
-        const colors = Object.keys(currentShirt.colors);
-        colors.forEach((color, index) => {
-            const btn = createColorButton(color, index === 0);
-            colorButtonsContainer.appendChild(btn);
+        function createColorButton(colorName, isActive = false) {
+            const btn = document.createElement('button');
+            btn.className = `color-btn ${isActive ? 'active' : ''}`;
+            btn.textContent = colorName;
+            btn.onclick = () => {
+                document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentColor = colorName;
+                updateImage();
+            };
+            return btn;
+        }
+
+        function createViewButton(viewName, isActive = false) {
+            const btn = document.createElement('button');
+            btn.className = `view-btn ${isActive ? 'active' : ''}`;
+            btn.textContent = viewName.charAt(0).toUpperCase() + viewName.slice(1);
+            btn.onclick = () => {
+                document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentView = viewName;
+                updateImage();
+            };
+            return btn;
+        }
+
+        function populateDetails() {
+            const nameElement = document.getElementById('shirt-name');
+            const descriptionElement = document.getElementById('shirt-description');
+            const priceElement = document.getElementById('shirt-price');
+            const colorButtonsContainer = document.getElementById('color-buttons');
+
+            nameElement.textContent = currentShirt.name;
+            descriptionElement.textContent = currentShirt.description || 'Описание отсутствует';
+            priceElement.textContent = currentShirt.price;
+
+            updateImage();
+
+            const colors = Object.keys(currentShirt.colors);
+            colors.forEach((color, index) => {
+                const btn = createColorButton(color, index === 0);
+                colorButtonsContainer.appendChild(btn);
+            });
+
+            const viewButtonsContainer = document.createElement('div');
+            viewButtonsContainer.className = 'view-buttons';
+
+            const frontBtn = createViewButton('front', true);
+            const backBtn = createViewButton('back', false);
+
+            viewButtonsContainer.appendChild(frontBtn);
+            viewButtonsContainer.appendChild(backBtn);
+
+            colorButtonsContainer.parentElement.appendChild(viewButtonsContainer);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            populateDetails();
         });
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-        populateDetails();
-    });
-</script>
+    </script>
 </body>
+
 </html>
