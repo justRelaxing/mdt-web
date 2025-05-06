@@ -1,20 +1,168 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Лабораторные</title>
-    </head>
-    <body>
-        <a href="frontend/src/lab1.html">Lab1</a>
-        <a href="frontend/src/lab2.html">Lab2</a>
-        <a href="frontend/src/lab3.html">Lab3</a>
-        <a href="frontend/src/lab4.html">Lab4</a>
-        <a href="frontend/src/lab5.html">Lab5</a>
-        <a href="frontend/src/lab6.html">Lab6</a>
-        <a href="frontend/src/lab7.html">Lab7</a>
-        <a href="Lab1/index.html">NewLab1</a>
-        <a href="Lab2/index.html">NewLab2</a>
-        <a href="Lab3/index.html">NewLab3</a>
-    </body>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Лабораторные работы</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --bg: linear-gradient(135deg, #1f1c2c 0%, #928dab 100%);
+            --card-bg: rgba(255, 255, 255, 0.15);
+            --card-border: rgba(255, 255, 255, 0.25);
+            --card-hover: rgba(255, 255, 255, 0.3);
+            --txt-primary: #fff;
+            --blur: 14px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: var(--bg);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--txt-primary);
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .menu {
+            display: grid;
+            gap: 1.2rem;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            width: 100%;
+            max-width: 720px;
+        }
+
+        .menu a {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem 1rem;
+            border-radius: 1.25rem;
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            backdrop-filter: blur(var(--blur));
+            -webkit-backdrop-filter: blur(var(--blur));
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+            transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+            overflow: hidden;
+        }
+
+        .menu a::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at center, var(--card-hover) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .menu a:hover,
+        .menu a:focus-visible {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.35);
+        }
+
+        .menu a:hover::after {
+            opacity: 1;
+        }
+
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            transform: scale(0);
+            background: rgba(255, 255, 255, 0.4);
+            animation: ripple 600ms linear;
+            pointer-events: none;
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        @media (min-width: 480px) {
+            .menu a {
+                font-size: 1.05rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="menu" id="menu">
+        <a href="frontend/src/lab1.html">Lab&nbsp;1</a>
+        <a href="frontend/src/lab2.html">Lab&nbsp;2</a>
+        <a href="frontend/src/lab3.html">Lab&nbsp;3</a>
+        <a href="frontend/src/lab4.html">Lab&nbsp;4</a>
+        <a href="frontend/src/lab5.html">Lab&nbsp;5</a>
+        <a href="frontend/src/lab6.html">Lab&nbsp;6</a>
+        <a href="frontend/src/lab7.html">Lab&nbsp;7</a>
+        <a href="Lab1/index.html">New&nbsp;Lab&nbsp;1</a>
+        <a href="Lab2/index.html">New&nbsp;Lab&nbsp;2</a>
+        <a href="Lab3/index.html">New&nbsp;Lab&nbsp;3</a>
+        <a href="Lab4-5/index.html">New&nbsp;Lab&nbsp;4‑5</a>
+    </nav>
+
+    <script>
+        document.getElementById("menu").addEventListener("click", e => {
+            const link = e.target.closest("a");
+            if (!link) return;
+            const rect = link.getBoundingClientRect();
+            const ripple = document.createElement("span");
+            ripple.className = "ripple";
+            ripple.style.width = ripple.style.height = `${Math.max(rect.width, rect.height)}px`;
+            ripple.style.left = `${e.clientX - rect.left - rect.width / 2}px`;
+            ripple.style.top = `${e.clientY - rect.top - rect.height / 2}px`;
+            link.appendChild(ripple);
+            ripple.addEventListener("animationend", () => ripple.remove());
+        });
+
+        const mq = window.matchMedia("(prefers-color-scheme: light)");
+        function applyTheme(light) {
+            document.documentElement.style.setProperty(
+                "--bg",
+                light
+                    ? "linear-gradient(135deg, #dfe9f3 0%, #ffffff 100%)"
+                    : "linear-gradient(135deg, #1f1c2c 0%, #928dab 100%)"
+            );
+            document.documentElement.style.setProperty(
+                "--card-bg",
+                light ? "rgba(255, 255, 255, 0.65)" : "rgba(255, 255, 255, 0.15)"
+            );
+            document.documentElement.style.setProperty(
+                "--card-border",
+                light ? "rgba(0, 0, 0, 0.1)" : "rgba(255, 255, 255, 0.25)"
+            );
+            document.documentElement.style.setProperty(
+                "--txt-primary",
+                light ? "#111" : "#fff"
+            );
+        }
+        applyTheme(mq.matches);
+        mq.addEventListener("change", e => applyTheme(e.matches));
+    </script>
+</body>
+
 </html>
